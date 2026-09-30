@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+}
+
+img{
+    height: 500px;
+    width: 1000px;
+}
+
+#imgg{
+    border: 10px solid greenyellow;
+    width: 1000px;
+    height: 500px;
+    margin-left: 200px;
+    margin-top: 200px;
+}
+
+h1{
+    color: aliceblue;
+    margin-left: 500px;
+}
+
+h3{
+    margin-left: 570px;
+    color: aliceblue;
+}
