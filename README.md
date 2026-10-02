@@ -9,9 +9,9 @@ I am using this space to practice writing clean code, track my daily learning st
 
 ## What I Am Learning
 Rather than just watching tutorials, I am actively building out the modules. Some of the key concepts I am practicing include:
-*   Building structured webpage layouts from scratch.
-*   Applying CSS to separate content from design.
-*   Getting comfortable with Git and GitHub version control workflows.
+1.  Building structured webpage layouts from scratch.
+2.  Applying CSS to separate content from design.
+3.  Getting comfortable with Git and GitHub version control workflows.
 
 ## Next Steps
 As I progress through the coursework, I plan to add JavaScript logic and eventually move into back-end database management and server-side scripting.
