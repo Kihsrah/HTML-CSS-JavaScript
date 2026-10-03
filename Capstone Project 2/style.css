@@ -1,0 +1,133 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.heading {
+    font-size: xx-large;
+    color: #fa9ef2;
+    font-weight: 700;
+}
+
+.subheading {
+    font-size: xx-large;
+    font-weight: 400;
+    font-family: cursive;
+    color: #61475f;
+    font-weight: 700;
+}
+
+
+
+.content-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 20px; 
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paragraphs {
+    font-weight: 400;
+    font-size: large;
+    font-style: italic;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.596);
+}
+
+.list {
+    font-size: large;
+    color:#b963b4
+}
+
+.hr {
+    border: dotted 10px #fa9ef2;
+    margin-top: 150px;
+    width: 200px;
+}
+
+.title {
+    background-color: #FFBEFB;
+    height: 700px;
+    position: relative;
+    border: 10px solid #fa9ef2;
+}
+
+.cloud {
+    position: absolute;
+    z-index: 1;
+    filter: invert(100);
+}
+
+.cloud-left {
+    top: 15px;
+    left: 10%;
+    width: 125px;
+}
+
+.cloud-right {
+    top: 300px;
+    right: 10%;
+    width: 125px
+}
+
+.title-text {
+    color: #DC95FF;
+    font-family: caveat;
+    display: flex;
+    font-weight: bolder;
+    font-size: 4rem;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+
+.title-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20%
+    
+}
+
+.title-image > img {
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    border: 10px solid #fa9ef2;
+}
+
+.resume {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-photo {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-bottom: 50px;
+}
+
+.resume-text {
+    text-align: center;
+}
+
+.about-item{
+    display: flex;
+    flex-direction: row;
+    border-radius: 10%;
+    margin-bottom: 50px;
+    gap: 30px;
+    width: 800px;
+    max-width: 90%;
+}
+
+.aboutmeimage {
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    flex-shrink: 0;
+}
