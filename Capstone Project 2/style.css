@@ -5,12 +5,12 @@ body {
 
 .heading {
     font-size: xx-large;
-    color: #fa9ef2;
+    color: #DC95FF;
     font-weight: 700;
 }
 
 .subheading {
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: 400;
     font-family: cursive;
     color: #61475f;
@@ -30,7 +30,7 @@ body {
 }
 
 .paragraphs {
-    font-weight: 400;
+    font-weight: 500;
     font-size: large;
     font-style: italic;
     letter-spacing: 2px;
@@ -44,7 +44,7 @@ body {
 
 .hr {
     border: dotted 10px #fa9ef2;
-    margin-top: 150px;
+    margin: 100px auto;
     width: 200px;
 }
 
@@ -130,4 +130,40 @@ body {
     height: 200px;
     border-radius: 10%;
     flex-shrink: 0;
+}
+
+.button {
+    background-color: #DC95FF;
+    border: 0px;
+    padding: 10px;
+    font-size: large;
+    color: white;
+    border-radius: 50px;
+}
+
+.footer {
+    background-color: #DC95FF;
+    height: 180px;
+    width: 100%;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+}
+
+.link {
+    margin-top: 30px;
+    color: #61475f;
+    text-decoration: none;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+    color: whitesmoke;
 }
