@@ -3,6 +3,7 @@ for (var i = 0; i < (document.querySelectorAll(".drum").length); i++) {
 
         var word = this.innerHTML;
         makeSound(word);
+        animation(word);
 
     })
 }
@@ -10,6 +11,7 @@ for (var i = 0; i < (document.querySelectorAll(".drum").length); i++) {
 
  document.addEventListener("keydown", function () {
         makeSound(event.key);
+        animation(event.key);
     })
 
     function makeSound(key) {
@@ -44,5 +46,14 @@ for (var i = 0; i < (document.querySelectorAll(".drum").length); i++) {
                 crash.play();
             default:
                 break;
-        }
+            }
     }
+
+    function animation(currentKey) {
+       var activeButton = document.querySelector("." + currentKey);
+       activeButton.classList.add("pressed");
+       setTimeout(function() {
+        activeButton.classList.remove("pressed");
+       }, 100);
+    }
+
