@@ -1,8 +1,8 @@
 let tasks = [];
-document.querySelector("#taskForm").addEventListener("submit", function(event) {
+document.querySelector("#taskForm").addEventListener("submit", function (event) {
     event.preventDefault();
-    let temp = document.querySelector("#taskInput").value; 
-    if(temp.trim() == "") {
+    let temp = document.querySelector("#taskInput").value;
+    if (temp.trim() == "") {
         alert("Enter a char");
         return;
     }
@@ -19,11 +19,11 @@ document.querySelector("#taskForm").addEventListener("submit", function(event) {
 })
 
 
-function renderTasks (array = tasks) {
+function renderTasks(array = tasks) {
     document.querySelector("#taskList").innerHTML = "";
 
-    for (let i = 0; i < array.length ; i++) {
-        
+    for (let i = 0; i < array.length; i++) {
+
         let listElement = document.createElement("li");
         let addButton = document.createElement("button");
         let addDeleteButton = document.createElement("button");
@@ -46,11 +46,11 @@ function renderTasks (array = tasks) {
         listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
         listElement.classList.add("task-item")
-        
+
         addButton.addEventListener("click", function () {
 
             completeTask(i);
-            
+
         })
 
         addDeleteButton.addEventListener("click", function () {
@@ -60,24 +60,31 @@ function renderTasks (array = tasks) {
     }
 }
 
-function completeTask (index) {
+function completeTask(index) {
     tasks[index].completed = !tasks[index].completed;
     renderTasks();
 }
 
-function deleteTask (index) {
-    tasks.splice(index , 1);
+function deleteTask(index) {
+    tasks.splice(index, 1);
     renderTasks();
 }
 
 document.querySelector("#searchInput").addEventListener("input", function () {
     let chars = this.value.toLowerCase();
 
-    
-    
-    let filteredTasks =  tasks.filter( task => {
-       return task.text.toLowerCase().includes(chars); }
+    let filteredTasks = tasks.map((task, index) => {
+        return {
+            task: task,
+            originalIndex: index
+        };
+    });
+
+    let final = filteredTasks.filter(task => {
+        return task.task.toLowerCase().includes(chars);
+    }
     );
 
-    renderTasks(filteredTasks);
+    renderTasks(final);
+    console.log(final);
 })
