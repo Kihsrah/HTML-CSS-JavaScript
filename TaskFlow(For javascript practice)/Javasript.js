@@ -26,29 +26,35 @@ function renderTasks () {
         
         let listElement = document.createElement("li");
         let addButton = document.createElement("button");
+        let addDeleteButton = document.createElement("button");
+        let newSpan = document.createElement("span");
+        newSpan.classList.add("task-text");
+        addDeleteButton.textContent = "Delete";
+        listElement.classList.add("task-item");
 
         if (tasks[i].completed == true) {
             addButton.textContent = "Undo";
+            listElement.classList.add("completed");
         }
         else {
             addButton.textContent = "Complete";
         }
 
-        
-        listElement.textContent = tasks[i].text;
+        listElement.append(newSpan);
+        newSpan.textContent = tasks[i].text;
         listElement.append(addButton);
+        listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
+        listElement.classList.add("task-item")
         
         addButton.addEventListener("click", function () {
-            if(tasks[i].completed == true) {
-                this.textContent = "Undo";
-            }
-            else {
-                this.textContent = "Complete";
-            }
-
 
             completeTask(i);
+            
+        })
+
+        addDeleteButton.addEventListener("click", function () {
+            deleteTask(i);
         })
 
     }
@@ -56,4 +62,11 @@ function renderTasks () {
 
 function completeTask (index) {
     tasks[index].completed = !tasks[index].completed;
+    renderTasks();
 }
+
+function deleteTask (index) {
+    tasks.splice(index , 1);
+    renderTasks();
+}
+
