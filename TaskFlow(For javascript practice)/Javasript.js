@@ -1,4 +1,6 @@
 let tasks = [];
+let currentFilter = "all";
+let chars = "";
 document.querySelector("#taskForm").addEventListener("submit", function (event) {
     event.preventDefault();
     let temp = document.querySelector("#taskInput").value;
@@ -96,59 +98,82 @@ function deleteTask(index) {
 }
 
 document.querySelector("#searchInput").addEventListener("input", function () {
-    let chars = this.value.toLowerCase();
+    chars = this.value.toLowerCase();
 
+    renderFilteredTasks();
+})
+
+
+function filterButtons(word) {
+
+    if (word == "all") {
+        renderTasks();
+    }
+    else if (word == "pending") {
+        let filteredTasks = tasks.map((task, index) => {
+            return {
+                sentence: task,
+                originalIndex: index
+            };
+        })
+
+        let final = filteredTasks.filter(item => {
+            return item.sentence.completed == false;
+        })
+
+        renderTasks(final);
+    }
+    else {
+        let filteredTasks = tasks.map((task, index) => {
+            return {
+                sentence: task,
+                originalIndex: index
+            }
+        })
+
+        let final = filteredTasks.filter(item => {
+            return item.sentence.completed == true;
+        })
+
+        
+        renderTasks(final);
+    }
+}
+
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+    button.addEventListener("click", function () {
+        currentFilter = button.dataset.filter;
+        renderFilteredTasks();
+    })
+})
+
+function renderFilteredTasks() {
+    let final;
     let filteredTasks = tasks.map((task, index) => {
         return {
             sentence: task,
             originalIndex: index
         };
-    });
-
-    let final = filteredTasks.filter(item => {
-        return item.sentence.text.toLowerCase().includes(chars);
-    }
-    );
-
-    renderTasks(final);
-    console.log(final);
-})
-
-
-document.querySelectorAll(".filter-btn").forEach(button => {
-    button.addEventListener("click", function () {
-        let source = button.dataset.filter;
-        
-        if (source == "all") {
-            renderTasks();
-        }
-        else if (source == "pending") {
-            let filteredTasks = tasks.map( (task, index) => {
-                return {
-                    sentence: task,
-                    originalIndex: index
-                };
-            })
-
-            let final = filteredTasks.filter(item => {
-                return item.sentence.completed == false;
-            })
-
-            renderTasks(final);
-        }
-        else {
-            let filteredTasks = tasks.map( (task, index) => {
-                return {
-                    sentence: task,
-                    originalIndex: index
-                }
-            })
-
-            let final = filteredTasks.filter(item => {
-                return item.sentence.completed == true;
-            })
-            
-            renderTasks(final);
-        }
     })
-})
+
+    if (currentFilter == "pending") {
+        final = filteredTasks.filter(item => {
+            return item.sentence.text.toLowerCase().includes(chars) &&
+                item.sentence.completed == false;
+        });
+    }
+    if(currentFilter == "completed") {
+        final = filteredTasks.filter(item => {
+            return item.sentence.text.toLowerCase().includes(chars) &&
+            item.sentence.completed == true;
+        });
+    }
+    if(currentFilter == "all") {
+        final = filteredTasks.filter(item => {
+            return item.sentence.text.toLowerCase().includes(chars);
+        })
+    }
+    
+    renderTasks(final);
+}
