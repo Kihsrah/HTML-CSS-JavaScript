@@ -28,12 +28,23 @@ function renderTasks(array = tasks) {
         let addDeleteButton = document.createElement("button");
         let newSpan = document.createElement("span");
 
-        
+        let currentTaskText;
+        let currentTaskCompleted;
+        if (array == tasks) {
+            currentTaskText = array[i].text;
+            currentTaskCompleted = array[i].completed;
+        }
+        else {
+            currentTaskText = array[i].sentence.text;
+            currentTaskCompleted = array[i].sentence.completed;
+        }
+
+
         newSpan.classList.add("task-text");
         addDeleteButton.textContent = "Delete";
         listElement.classList.add("task-item");
 
-        if (array[i].sentence.completed == true) {
+        if (array[i].currentTaskCompleted == true) {
             addButton.textContent = "Undo";
             listElement.classList.add("completed");
         }
@@ -41,8 +52,10 @@ function renderTasks(array = tasks) {
             addButton.textContent = "Complete";
         }
 
+
+
         listElement.append(newSpan);
-        newSpan.textContent = array[i].sentence.text;
+        newSpan.textContent = array[i].currentTaskText;
         listElement.append(addButton);
         listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
@@ -50,12 +63,22 @@ function renderTasks(array = tasks) {
 
         addButton.addEventListener("click", function () {
 
-            completeTask(i);
+            if (array == tasks) {
+                completeTask(i);
+            }
+            else {
+                completeTask(array[i].originalIndex);
+            }
 
         })
 
         addDeleteButton.addEventListener("click", function () {
-            deleteTask(i);
+            if (array == tasks) {
+                deleteTask(i);
+            }
+            else {
+                deleteTask(array[i].originalIndex);
+            }
         })
 
     }
@@ -81,7 +104,7 @@ document.querySelector("#searchInput").addEventListener("input", function () {
         };
     });
 
-    let final = filteredTasks.filter( item => {
+    let final = filteredTasks.filter(item => {
         return item.sentence.text.toLowerCase().includes(chars);
     }
     );
