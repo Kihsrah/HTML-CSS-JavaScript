@@ -44,7 +44,7 @@ function renderTasks(array = tasks) {
         addDeleteButton.textContent = "Delete";
         listElement.classList.add("task-item");
 
-        if (array[i].currentTaskCompleted == true) {
+        if (currentTaskCompleted == true) {
             addButton.textContent = "Undo";
             listElement.classList.add("completed");
         }
@@ -55,7 +55,8 @@ function renderTasks(array = tasks) {
 
 
         listElement.append(newSpan);
-        newSpan.textContent = array[i].currentTaskText;
+        newSpan.textContent = currentTaskText;
+        console.log(currentTaskText);
         listElement.append(addButton);
         listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
@@ -111,4 +112,23 @@ document.querySelector("#searchInput").addEventListener("input", function () {
 
     renderTasks(final);
     console.log(final);
+})
+
+
+document.querySelectorAll(".filter-btn").forEach(button => {
+    button.addEventListener("click", function () {
+        let source = button.dataset.filter;
+        
+        if (source == "all") {
+            renderTasks();
+        }
+        else if (source == "pending") {
+            let filteredTasks = tasks.map( (task, index) => {
+                return {
+                    sentence: task,
+                    originalIndex: index
+                };
+            })
+        }
+    })
 })
