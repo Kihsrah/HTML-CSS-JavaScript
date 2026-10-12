@@ -14,7 +14,6 @@ document.querySelector("#taskForm").addEventListener("submit", function (event) 
     };
 
     tasks.push(newTask);
-    console.log(tasks);
     renderTasks();
 })
 
@@ -28,11 +27,13 @@ function renderTasks(array = tasks) {
         let addButton = document.createElement("button");
         let addDeleteButton = document.createElement("button");
         let newSpan = document.createElement("span");
+
+        
         newSpan.classList.add("task-text");
         addDeleteButton.textContent = "Delete";
         listElement.classList.add("task-item");
 
-        if (array[i].completed == true) {
+        if (array[i].sentence.completed == true) {
             addButton.textContent = "Undo";
             listElement.classList.add("completed");
         }
@@ -41,7 +42,7 @@ function renderTasks(array = tasks) {
         }
 
         listElement.append(newSpan);
-        newSpan.textContent = array[i].text;
+        newSpan.textContent = array[i].sentence.text;
         listElement.append(addButton);
         listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
@@ -75,13 +76,13 @@ document.querySelector("#searchInput").addEventListener("input", function () {
 
     let filteredTasks = tasks.map((task, index) => {
         return {
-            task: task,
+            sentence: task,
             originalIndex: index
         };
     });
 
-    let final = filteredTasks.filter(task => {
-        return task.task.toLowerCase().includes(chars);
+    let final = filteredTasks.filter( item => {
+        return item.sentence.text.toLowerCase().includes(chars);
     }
     );
 
