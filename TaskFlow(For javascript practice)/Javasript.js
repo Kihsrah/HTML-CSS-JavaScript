@@ -129,6 +129,26 @@ document.querySelectorAll(".filter-btn").forEach(button => {
                     originalIndex: index
                 };
             })
+
+            let final = filteredTasks.filter(item => {
+                return item.sentence.completed == false;
+            })
+
+            renderTasks(final);
+        }
+        else {
+            let filteredTasks = tasks.map( (task, index) => {
+                return {
+                    sentence: task,
+                    originalIndex: index
+                }
+            })
+
+            let final = filteredTasks.filter(item => {
+                return item.sentence.completed == true;
+            })
+            
+            renderTasks(final);
         }
     })
 })
