@@ -1,6 +1,9 @@
 let tasks = [];
 let currentFilter = "all";
 let chars = "";
+let Total = 0;
+let TotalPending = 0;
+let TotalCompleted = 0;
 document.querySelector("#taskForm").addEventListener("submit", function (event) {
     event.preventDefault();
     let temp = document.querySelector("#taskInput").value;
@@ -22,6 +25,16 @@ document.querySelector("#taskForm").addEventListener("submit", function (event) 
 
 function renderTasks(array = tasks) {
     document.querySelector("#taskList").innerHTML = "";
+    Total = tasks.length;
+        TotalCompleted = tasks.filter(item => {
+            return item.completed == true;
+        }).length;
+        TotalPending = tasks.filter(item => {
+            return item.completed == false;
+        }).length;
+        document.querySelector("#totalCount").textContent = Total;
+        document.querySelector("#pendingCount").textContent = TotalPending;
+        document.querySelector("#completedCount").textContent = TotalCompleted;
 
     for (let i = 0; i < array.length; i++) {
 
@@ -63,6 +76,7 @@ function renderTasks(array = tasks) {
         listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
         listElement.classList.add("task-item")
+
 
         addButton.addEventListener("click", function () {
 
