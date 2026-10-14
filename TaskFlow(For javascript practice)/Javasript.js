@@ -200,5 +200,4 @@ document.querySelector("#clearCompletedBtn").addEventListener("click", function(
         }
     }
     renderTasks();
-    f
 })
