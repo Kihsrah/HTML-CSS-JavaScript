@@ -97,7 +97,6 @@ function renderTasks(array = tasks) {
                 deleteTask(array[i].originalIndex);
             }
         })
-
     }
 }
 
@@ -148,7 +147,6 @@ function filterButtons(word) {
         let final = filteredTasks.filter(item => {
             return item.sentence.completed == true;
         })
-
         
         renderTasks(final);
     }
