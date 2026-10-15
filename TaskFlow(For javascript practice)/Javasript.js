@@ -195,6 +195,7 @@ document.querySelector("#clearCompletedBtn").addEventListener("click", function(
     for(let i = tasks.length - 1; i >= 0; i--) {
         if(tasks[i].completed == true) {
             tasks.splice(i,1);
+            fjsl
         }
     }
     renderTasks();
