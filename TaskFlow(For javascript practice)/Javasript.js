@@ -35,6 +35,12 @@ function renderTasks(array = tasks) {
         document.querySelector("#totalCount").textContent = Total;
         document.querySelector("#pendingCount").textContent = TotalPending;
         document.querySelector("#completedCount").textContent = TotalCompleted;
+        if(array.length != 0) {
+            document.querySelector("#emptyMessage").textContent = "";
+        }
+        else {
+            document.querySelector("#emptyMessage").textContent = "No task task to display !";
+        }
 
     for (let i = 0; i < array.length; i++) {
 
@@ -43,7 +49,6 @@ function renderTasks(array = tasks) {
         let addDeleteButton = document.createElement("button");
         let newSpan = document.createElement("span");
 
-        addButton.classList.add("complete-btn");
         addDeleteButton.classList.add("delete-btn");
 
         let currentTaskText;
@@ -65,9 +70,11 @@ function renderTasks(array = tasks) {
         if (currentTaskCompleted == true) {
             addButton.textContent = "Undo";
             listElement.classList.add("completed");
+            addButton.classList.add("undo-btn");
         }
         else {
             addButton.textContent = "Complete";
+            addButton.classList.add("complete-btn");
         }
 
 
