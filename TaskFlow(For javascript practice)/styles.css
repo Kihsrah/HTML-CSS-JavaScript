@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -111,7 +110,14 @@ button {
 .task-item {
     /* TODO 4: Give each task a background, padding,
        margin, and rounded corners. */
+
+    display: flex;
+    align-items: center;
     margin-bottom: 10px;
+}
+
+.task-text {
+
 }
 
 /* JavaScript should add this class to completed tasks. */
@@ -145,3 +151,22 @@ button {
 
 /* TODO 6: Add a media query for screens narrower than 500px.
    Make the form and summary comfortable to use on mobile. */
+
+.filters {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.filter-btn {
+    background-color: #3382e2;
+    color: white;
+}
+
+.complete-btn {
+
+}
+
+.delete-btn {
+
+}

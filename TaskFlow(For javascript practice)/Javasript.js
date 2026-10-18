@@ -43,6 +43,9 @@ function renderTasks(array = tasks) {
         let addDeleteButton = document.createElement("button");
         let newSpan = document.createElement("span");
 
+        addButton.classList.add("complete-btn");
+        addDeleteButton.classList.add("delete-btn");
+
         let currentTaskText;
         let currentTaskCompleted;
         if (array == tasks) {
@@ -75,7 +78,7 @@ function renderTasks(array = tasks) {
         listElement.append(addButton);
         listElement.append(addDeleteButton);
         document.querySelector("#taskList").append(listElement);
-        listElement.classList.add("task-item")
+        listElement.classList.add("task-item");
 
 
         addButton.addEventListener("click", function () {
