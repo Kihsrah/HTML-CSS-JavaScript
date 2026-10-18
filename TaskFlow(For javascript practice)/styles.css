@@ -164,8 +164,12 @@ button {
 }
 
 .filter-btn {
-    background-color: #3382e2;
+    background-color: #3b82f6;
     color: white;
+}
+
+.filter-btn:hover {
+    background: #2563eb;
 }
 
 .complete-btn {
@@ -206,6 +210,13 @@ button {
 }
 
 .complete-btn:hover, .delete-btn:hover, .undo-btn:hover {
-    transform: translateY(-1px);
     
+    box-shadow: 0px 3px 8px whitesmoke;
+    transition: background-color 0.4s ease;
+}
+
+button:hover {
+    transition: background-color 0.4s ease;
+    box-shadow: 0px 3px 8px whitesmoke;
+    transform: translateY(-2px);
 }
