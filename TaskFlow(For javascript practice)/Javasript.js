@@ -1,4 +1,4 @@
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 let currentFilter = "all";
 let chars = "";
 let Total = 0;
@@ -8,7 +8,7 @@ document.querySelector("#taskForm").addEventListener("submit", function (event) 
     event.preventDefault();
     let temp = document.querySelector("#taskInput").value;
     if (temp.trim() == "") {
-        alert("Enter a char");
+        alert("Enter a valid input!");
         return;
     }
     document.querySelector("#taskInput").value = "";
@@ -19,6 +19,7 @@ document.querySelector("#taskForm").addEventListener("submit", function (event) 
     };
 
     tasks.push(newTask);
+    saveTasks();
     renderTasks();
 })
 
@@ -112,11 +113,13 @@ function renderTasks(array = tasks) {
 
 function completeTask(index) {
     tasks[index].completed = !tasks[index].completed;
+    saveTasks();
     renderTasks();
 }
 
 function deleteTask(index) {
     tasks.splice(index, 1);
+    saveTasks();
     renderTasks();
 }
 
@@ -207,5 +210,12 @@ document.querySelector("#clearCompletedBtn").addEventListener("click", function(
             tasks.splice(i,1);
         }
     }
+    saveTasks();
     renderTasks();
 })
+
+function saveTasks () {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+renderTasks();
