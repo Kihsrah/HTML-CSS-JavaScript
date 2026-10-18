@@ -113,11 +113,16 @@ button {
 
     display: flex;
     align-items: center;
+    padding: 10px;
     margin-bottom: 10px;
+    background-color: #111827;
+    border-radius: 8px;
+    box-shadow: 0px 3px 8px #2494f04d;
 }
 
 .task-text {
-
+    margin-right: auto;
+    margin-left: 10px;
 }
 
 /* JavaScript should add this class to completed tasks. */
@@ -164,9 +169,43 @@ button {
 }
 
 .complete-btn {
+    margin-right: 10px;
+    background-color: green;
+    color: whitesmoke;
+}
 
+.complete-btn:hover {
+    background-color: darkgreen;
 }
 
 .delete-btn {
+    margin-right: 5px;
+    background-color: red;
+    color: whitesmoke;
+}
 
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+.undo-btn {
+    margin-right: 10px;
+    background-color: #3382e2;
+    color: whitesmoke;
+}
+
+.undo-btn:hover {
+    background-color: #1d5191;
+}
+
+.complete-btn,
+.delete-btn, .undo-btn {
+    transition: background-color 0.4s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.complete-btn:hover, .delete-btn:hover, .undo-btn:hover {
+    transform: translateY(-1px);
+    
 }
