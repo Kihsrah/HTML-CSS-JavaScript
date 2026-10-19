@@ -9,6 +9,12 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
     let category = document.querySelector("#category").value;
     let date = document.querySelector("#date").value;
 
+    //Input reset:
+    document.querySelector("#description").value = "";
+    document.querySelector("#amount").value = "";
+    document.querySelector("#category").value = "";
+    document.querySelector("#date").value = "";
+
     //Invalid input chekers:
     if(descText.trim() == "") {
         alert("Enter a valid input");
@@ -28,6 +34,25 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
         DATE: date
     }
 
+
     expenses.push(expense);
     console.log(expenses);
+    renderExpenses(expenses);
 })
+
+
+//rendering function:
+function renderExpenses (array) {
+
+    //variable declaration:
+    let totalSpent = 0;
+    let transactionCount = array.length;
+
+    for (let i = 0; i < array.length; i++) {
+        totalSpent += array[i].AMOUNT;
+    }
+
+    document.querySelector("#totalSpent").textContent = "₹" + totalSpent;
+    document.querySelector("#transactionCount").textContent = transactionCount;
+
+}
