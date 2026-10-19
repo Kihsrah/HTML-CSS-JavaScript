@@ -1,0 +1,257 @@
+
+/* ---------- Global styles ---------- */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #f1f5f9;
+    min-height: 100vh;
+    padding: 36px 16px;
+}
+
+.app {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    font-size: 32px;
+    color: #60a5fa;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #94a3b8;
+}
+
+/* ---------- Summary cards ---------- */
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.summary-card h2 {
+    font-size: 26px;
+    color: #34d399;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Panels ---------- */
+
+.panel {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.panel > h2,
+.transactions-header h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+/* ---------- Form ---------- */
+
+#expenseForm {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+input,
+select {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    background: #0f172a;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #f1f5f9;
+    font: inherit;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.12);
+}
+
+input::placeholder {
+    color: #64748b;
+}
+
+/* ---------- Buttons ---------- */
+
+button {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+button:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#addExpenseBtn {
+    width: 100%;
+}
+
+/* ---------- Category breakdown ---------- */
+
+#categoryBreakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.empty-message {
+    color: #94a3b8;
+    font-size: 14px;
+    text-align: center;
+    padding: 18px 8px;
+}
+
+/* ---------- Transactions ---------- */
+
+.transactions-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.transactions-header h2 {
+    margin-bottom: 0;
+}
+
+#filterCategory {
+    width: auto;
+    max-width: 180px;
+}
+
+#searchExpense {
+    margin-bottom: 16px;
+}
+
+#transactionList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+    text-align: center;
+    padding: 8px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+/* ---------- Responsive design ---------- */
+
+@media (max-width: 500px) {
+    body {
+        padding: 24px 12px;
+    }
+
+    .header h1 {
+        font-size: 27px;
+    }
+
+    .summary {
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 14px;
+    }
+
+    .summary-card h2 {
+        font-size: 21px;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .transactions-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #filterCategory {
+        width: 100%;
+        max-width: none;
+    }
+}
