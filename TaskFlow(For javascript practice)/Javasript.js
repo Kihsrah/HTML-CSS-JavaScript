@@ -40,7 +40,7 @@ function renderTasks(array = tasks) {
             document.querySelector("#emptyMessage").textContent = "";
         }
         else {
-            document.querySelector("#emptyMessage").textContent = "No task task to display !";
+            document.querySelector("#emptyMessage").textContent = "No task to display !";
         }
 
     for (let i = 0; i < array.length; i++) {
