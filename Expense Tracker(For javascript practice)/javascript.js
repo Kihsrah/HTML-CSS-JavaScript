@@ -1,4 +1,5 @@
 let expenses = [];
+let chars = "";
 
 document.querySelector("#addExpenseBtn").addEventListener("click", function (event) {
     event.preventDefault();
@@ -68,38 +69,41 @@ function renderExpenses (array) {
     document.querySelector("#transactionCount").textContent = transactionCount;
 
     let categorySpending = {
-        food: 0,
-        travel: 0,
-        shopping: 0,
-        education: 0,
-        bills: 0,
-        others: 0
+        Food: 0,
+        Travel: 0,
+        Shopping: 0,
+        Education: 0,
+        Bills: 0,
+        Others: 0
     };
 
     //Spending by category section:
     for (let i = 0; i < array.length; i++) {
         if (array[i].CATEGORY == "Food") {
-            categorySpending.food += array[i].AMOUNT;
+            categorySpending.Food += array[i].AMOUNT;
         }
         else if (array[i].CATEGORY == "Travel") {
-            categorySpending.travel += array[i].AMOUNT;
+            categorySpending.Travel += array[i].AMOUNT;
         }
         else if (array[i].CATEGORY == "Shopping") {
-            categorySpending.shopping += array[i].AMOUNT;
+            categorySpending.Shopping += array[i].AMOUNT;
         }
         else if (array[i].CATEGORY == "Education") {
-            categorySpending.education += array[i].AMOUNT;
+            categorySpending.Education += array[i].AMOUNT;
         }
         else if (array[i].CATEGORY == "Bills") {
-            categorySpending.bills += array[i].AMOUNT;
+            categorySpending.Bills += array[i].AMOUNT;
         }
         else {
-            categorySpending.others += array[i].AMOUNT;
+            categorySpending.Others += array[i].AMOUNT;
         }
     }
 
     document.querySelector("#categoryBreakdown").innerHTML = "";
     for (let i in categorySpending) {
+        if(categorySpending[i] == 0) {
+            continue;
+        }
         let listCreation = document.createElement("li");
         let spanCreation1 = document.createElement("span");
         let spanCreation2 = document.createElement("span");
@@ -108,5 +112,20 @@ function renderExpenses (array) {
         spanCreation1.textContent = i;
         listCreation.append(spanCreation2);
         spanCreation2.textContent = "₹" + categorySpending[i];
+        document.querySelector("#categoryBreakdown").append(listCreation);
     }
+}
+
+
+document.querySelector("#searchExpense").addEventListener("input", function () {
+    chars = this.value.toLowerCase();
+    filterExpenses(chars);
+})
+
+
+function filterExpenses (char) {
+    let filteredArray = expenses.filter(item => {
+        return item.DESCTEXT.toLowerCase().includes(char);
+    });
+    
 }
