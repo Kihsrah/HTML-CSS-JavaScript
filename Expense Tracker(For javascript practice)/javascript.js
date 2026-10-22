@@ -81,24 +81,24 @@ function renderExpenses (array) {
     };
 
     //Spending by category section:
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].CATEGORY == "Food") {
-            categorySpending.Food += array[i].AMOUNT;
+    for (let i = 0; i < expenses.length; i++) {
+        if (expenses[i].CATEGORY == "Food") {
+            categorySpending.Food += expenses[i].AMOUNT;
         }
-        else if (array[i].CATEGORY == "Travel") {
-            categorySpending.Travel += array[i].AMOUNT;
+        else if (expenses[i].CATEGORY == "Travel") {
+            categorySpending.Travel += expenses[i].AMOUNT;
         }
-        else if (array[i].CATEGORY == "Shopping") {
-            categorySpending.Shopping += array[i].AMOUNT;
+        else if (expenses[i].CATEGORY == "Shopping") {
+            categorySpending.Shopping += expenses[i].AMOUNT;
         }
-        else if (array[i].CATEGORY == "Education") {
-            categorySpending.Education += array[i].AMOUNT;
+        else if (expenses[i].CATEGORY == "Education") {
+            categorySpending.Education += expenses[i].AMOUNT;
         }
-        else if (array[i].CATEGORY == "Bills") {
-            categorySpending.Bills += array[i].AMOUNT;
+        else if (expenses[i].CATEGORY == "Bills") {
+            categorySpending.Bills += expenses[i].AMOUNT;
         }
         else {
-            categorySpending.Others += array[i].AMOUNT;
+            categorySpending.Others += expenses[i].AMOUNT;
         }
     }
 
@@ -132,3 +132,11 @@ function filterExpenses (char) {
     });
     renderExpenses(filteredArray);
 }
+
+document.querySelector("#filterCategory").addEventListener("click", function () {
+    let categorySelected = this.value;
+    console.log(categorySelected);
+    // let categoryFilteredArray = expenses.filter(item => {
+    //     return 
+    // })
+})
