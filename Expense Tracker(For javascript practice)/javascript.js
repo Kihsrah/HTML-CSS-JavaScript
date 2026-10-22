@@ -71,8 +71,9 @@ function renderExpenses (array = expenses) {
         document.querySelector("#transactionList").classList = "empty-message";
     }
     else {
-        document.querySelector("#transactionList").classList = "";
+        document.querySelector("#transactionList").classList.remove("empty-message");
     }
+
     for (let i = 0; i < array.length; i++) {
 
         let listCreation = document.createElement("li");
