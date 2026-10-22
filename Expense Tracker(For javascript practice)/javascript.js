@@ -51,6 +51,7 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
 
 //rendering function:
 function renderExpenses(array = expenses) {
+    totalSpent = 0;
 
     //Changing html for the RECENT TRANSACTION section:
     document.querySelector("#transactionList").innerHTML = "";
@@ -130,7 +131,7 @@ function renderExpenses(array = expenses) {
 
         if (totalSpent != 0) {
 
-            percentage = Math.round((categorySpending[i] / totalSpent) * 100);
+            percentage = Math.floor((categorySpending[i] / totalSpent) * 100);
 
         }
 
@@ -146,20 +147,24 @@ function renderExpenses(array = expenses) {
         listCreation.append(barCreation);
         document.querySelector("#categoryBreakdown").append(listCreation);
 
-        
+        barCreation.style.width = percentage + "%";
+        barCreation.style.height = "10px"
+        barCreation.style.backgroundColor = "seagreen";
+
+
     }
 }
 
 
 document.querySelector("#searchExpense").addEventListener("input", function () {
     chars = this.value.toLowerCase();
-    filterExpenses(chars);
+    filterByCategory();
 })
 
 
-function filterExpenses(char) {
+function filterExpenses() {
     let filteredArray = expenses.filter(item => {
-        return item.DESCTEXT.toLowerCase().includes(char);
+        return item.DESCTEXT.toLowerCase().includes(chars);
     });
     renderExpenses(filteredArray);
 }
@@ -171,13 +176,18 @@ document.querySelector("#filterCategory").addEventListener("change", function ()
 })
 
 function filterByCategory(categorySelected) {
-    if (categorySelected == "all") {
-        renderExpenses(expenses);
-        return;
-    }
-    let categoryFilteredArray = expenses.filter(item => {
-        return item.CATEGORY.toLowerCase().includes(categorySelected);
-    });
 
+    let categoryFilteredArray;
+    if(categorySelected == "all") {
+        categoryFilteredArray = expenses.filter (item => {
+            return item.DESCTEXT.toLowerCase().includes(chars);
+        })
+    }
+    else {
+        categoryFilteredArray = expenses.filter (item => {
+            return item.DESCTEXT.toLowerCase().includes(chars) && 
+            item.CATEGORY.toLowerCase() == categorySelected.toLowerCase();
+        })
+    }
     renderExpenses(categoryFilteredArray);
 }
