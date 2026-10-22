@@ -1,15 +1,17 @@
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 let chars = "";
+let totalSpent = 0;
+let percentage;
 
 renderExpenses();
 
-function saveExpenses () {
+function saveExpenses() {
     localStorage.setItem("expenses", JSON.stringify(expenses));
 }
 
 document.querySelector("#addExpenseBtn").addEventListener("click", function (event) {
     event.preventDefault();
-    
+
     //Variable declaration:
     let descText = document.querySelector("#description").value;
     let amount = Number(document.querySelector("#amount").value);
@@ -17,12 +19,12 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
     let date = document.querySelector("#date").value;
 
     //Invalid input chekers:
-    if(descText.trim() == "") {
+    if (descText.trim() == "") {
         alert("Enter a valid input");
         return;
     }
-    
-    if(amount <= 0) {
+
+    if (amount <= 0) {
         alert("Enter a valid amount");
         return;
     }
@@ -32,7 +34,7 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
     document.querySelector("#amount").value = "";
     document.querySelector("#category").value = "";
     document.querySelector("#date").value = "";
-    
+
     //object creation:
     let expense = {
         DESCTEXT: descText,
@@ -48,23 +50,23 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
 
 
 //rendering function:
-function renderExpenses (array = expenses) {
+function renderExpenses(array = expenses) {
 
     //Changing html for the RECENT TRANSACTION section:
     document.querySelector("#transactionList").innerHTML = "";
 
     //variable declaration:
-    let totalSpent = 0;
+
     let transactionCount = expenses.length;
 
-    for(let i = 0; i < expenses.length; i++) {
+    for (let i = 0; i < expenses.length; i++) {
         totalSpent += expenses[i].AMOUNT;
     }
 
     document.querySelector("#totalSpent").textContent = "₹" + totalSpent.toFixed(2);
     document.querySelector("#transactionCount").textContent = transactionCount;
 
-    if(array.length == 0) {
+    if (array.length == 0) {
         let listCreation = document.createElement("li");
         listCreation.textContent = "No Results!";
         document.querySelector("#transactionList").append(listCreation);
@@ -79,7 +81,7 @@ function renderExpenses (array = expenses) {
         let listCreation = document.createElement("li");
         let spanCreation1 = document.createElement("span");
         let spanCreation2 = document.createElement("span");
-        
+
         listCreation.append(spanCreation1);
         spanCreation1.textContent = array[i].DESCTEXT + " | " + array[i].CATEGORY + " | " + array[i].DATE;
         listCreation.append(spanCreation2);
@@ -118,20 +120,33 @@ function renderExpenses (array = expenses) {
         }
     }
 
+
     document.querySelector("#categoryBreakdown").innerHTML = "";
     for (let i in categorySpending) {
-        if(categorySpending[i] == 0) {
+
+        if (categorySpending[i] == 0) {
             continue;
         }
+
+        if (totalSpent != 0) {
+
+            percentage = Math.round((categorySpending[i] / totalSpent) * 100);
+
+        }
+
         let listCreation = document.createElement("li");
         let spanCreation1 = document.createElement("span");
         let spanCreation2 = document.createElement("span");
+        let barCreation = document.createElement("div");
 
         listCreation.append(spanCreation1);
         spanCreation1.textContent = i;
         listCreation.append(spanCreation2);
         spanCreation2.textContent = " - ₹" + categorySpending[i];
+        listCreation.append(barCreation);
         document.querySelector("#categoryBreakdown").append(listCreation);
+
+        
     }
 }
 
@@ -142,7 +157,7 @@ document.querySelector("#searchExpense").addEventListener("input", function () {
 })
 
 
-function filterExpenses (char) {
+function filterExpenses(char) {
     let filteredArray = expenses.filter(item => {
         return item.DESCTEXT.toLowerCase().includes(char);
     });
@@ -155,8 +170,8 @@ document.querySelector("#filterCategory").addEventListener("change", function ()
     filterByCategory(categorySelected);
 })
 
-function filterByCategory (categorySelected) {
-    if(categorySelected == "all") {
+function filterByCategory(categorySelected) {
+    if (categorySelected == "all") {
         renderExpenses(expenses);
         return;
     }
