@@ -1,5 +1,9 @@
-let expenses = [];
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 let chars = "";
+
+function saveExpenses () {
+    JSON.stringify("expenses", JSON.stringify(expenses));
+}
 
 document.querySelector("#addExpenseBtn").addEventListener("click", function (event) {
     event.preventDefault();
