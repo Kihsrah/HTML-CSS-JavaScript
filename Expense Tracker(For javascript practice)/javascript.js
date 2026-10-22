@@ -36,7 +36,6 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
     }
 
     expenses.push(expense);
-    console.log(expenses);
     renderExpenses(expenses);
 })
 
@@ -133,10 +132,19 @@ function filterExpenses (char) {
     renderExpenses(filteredArray);
 }
 
-document.querySelector("#filterCategory").addEventListener("click", function () {
-    let categorySelected = this.value;
-    console.log(categorySelected);
-    // let categoryFilteredArray = expenses.filter(item => {
-    //     return 
-    // })
+document.querySelector("#filterCategory").addEventListener("change", function () {
+
+    let categorySelected = this.value.toLowerCase();
+    filterByCategory(categorySelected);
 })
+
+function filterByCategory (categorySelected) {
+    if(categorySelected == "all categories") {
+        renderExpenses(expenses);
+    }
+    let categoryFilteredArray = expenses.filter(item => {
+        return item.CATEGORY.toLowerCase().includes(categorySelected);
+    });
+
+    renderExpenses(categoryFilteredArray);
+}
