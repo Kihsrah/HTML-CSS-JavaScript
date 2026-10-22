@@ -49,10 +49,16 @@ function renderExpenses (array) {
 
     //variable declaration:
     let totalSpent = 0;
-    let transactionCount = array.length;
+    let transactionCount = expenses.length;
+
+    for(let i = 0; i < expenses.length; i++) {
+        totalSpent += expenses[i].AMOUNT;
+    }
+
+    document.querySelector("#totalSpent").textContent = "₹" + totalSpent.toFixed(2);
+    document.querySelector("#transactionCount").textContent = transactionCount;
 
     for (let i = 0; i < array.length; i++) {
-        totalSpent += array[i].AMOUNT;
 
         let listCreation = document.createElement("li");
         let spanCreation1 = document.createElement("span");
@@ -64,9 +70,6 @@ function renderExpenses (array) {
         spanCreation2.textContent = "-₹" + array[i].AMOUNT.toFixed(2);
         document.querySelector("#transactionList").append(listCreation);
     }
-
-    document.querySelector("#totalSpent").textContent = "₹" + totalSpent.toFixed(2);
-    document.querySelector("#transactionCount").textContent = transactionCount;
 
     let categorySpending = {
         Food: 0,
@@ -111,7 +114,7 @@ function renderExpenses (array) {
         listCreation.append(spanCreation1);
         spanCreation1.textContent = i;
         listCreation.append(spanCreation2);
-        spanCreation2.textContent = "₹" + categorySpending[i];
+        spanCreation2.textContent = " - ₹" + categorySpending[i];
         document.querySelector("#categoryBreakdown").append(listCreation);
     }
 }
@@ -127,5 +130,5 @@ function filterExpenses (char) {
     let filteredArray = expenses.filter(item => {
         return item.DESCTEXT.toLowerCase().includes(char);
     });
-    
+    renderExpenses(filteredArray);
 }
