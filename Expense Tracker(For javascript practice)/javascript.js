@@ -57,6 +57,12 @@ function renderExpenses (array) {
     document.querySelector("#totalSpent").textContent = "₹" + totalSpent.toFixed(2);
     document.querySelector("#transactionCount").textContent = transactionCount;
 
+    if(array.length == 0) {
+        let listCreation = document.createElement("li");
+        listCreation.textContent = "No Results!";
+        document.querySelector("#transactionList").append(listCreation);
+        document.querySelector("#transactionList").classList = "empty-message";
+    }
     for (let i = 0; i < array.length; i++) {
 
         let listCreation = document.createElement("li");
@@ -139,8 +145,9 @@ document.querySelector("#filterCategory").addEventListener("change", function ()
 })
 
 function filterByCategory (categorySelected) {
-    if(categorySelected == "all categories") {
+    if(categorySelected == "all") {
         renderExpenses(expenses);
+        return;
     }
     let categoryFilteredArray = expenses.filter(item => {
         return item.CATEGORY.toLowerCase().includes(categorySelected);
