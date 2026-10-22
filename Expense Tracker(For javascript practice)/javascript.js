@@ -1,8 +1,10 @@
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 let chars = "";
 
+renderExpenses();
+
 function saveExpenses () {
-    JSON.stringify("expenses", JSON.stringify(expenses));
+    localStorage.setItem("expenses", JSON.stringify(expenses));
 }
 
 document.querySelector("#addExpenseBtn").addEventListener("click", function (event) {
@@ -40,12 +42,13 @@ document.querySelector("#addExpenseBtn").addEventListener("click", function (eve
     }
 
     expenses.push(expense);
+    saveExpenses();
     renderExpenses(expenses);
 })
 
 
 //rendering function:
-function renderExpenses (array) {
+function renderExpenses (array = expenses) {
 
     //Changing html for the RECENT TRANSACTION section:
     document.querySelector("#transactionList").innerHTML = "";
@@ -66,6 +69,9 @@ function renderExpenses (array) {
         listCreation.textContent = "No Results!";
         document.querySelector("#transactionList").append(listCreation);
         document.querySelector("#transactionList").classList = "empty-message";
+    }
+    else {
+        document.querySelector("#transactionList").classList = "";
     }
     for (let i = 0; i < array.length; i++) {
 
