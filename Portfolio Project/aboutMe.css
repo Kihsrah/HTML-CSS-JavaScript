@@ -10,4 +10,15 @@ body {
     padding: 10px;
 }
 
+.card {
+    border-radius: 20px;
+}
 
+.tech-label {
+    font-size: 0.8rem;
+    background-color: #202126;
+    padding: 10px;
+    color: #C4C5CB;
+    border: 2px solid #34353D;
+    border-radius: 20px;
+}
