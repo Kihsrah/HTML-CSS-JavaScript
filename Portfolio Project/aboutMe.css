@@ -1,3 +1,13 @@
 body {
     background-color: #101114;
 }
+
+.profile  {
+    background-color: #282a31;
+    border-radius: 50%;
+    height: 56px;
+    width: 56px;
+    padding: 10px;
+}
+
+
