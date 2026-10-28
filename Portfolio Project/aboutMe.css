@@ -22,3 +22,8 @@ body {
     border: 2px solid #34353D;
     border-radius: 20px;
 }
+
+.about-card {
+    width: 100%;
+    max-width: 45rem;
+}
